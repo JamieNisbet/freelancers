@@ -42,8 +42,8 @@ export const publicRoutes = [
     element: lazy(() => import('../pages/auth/ResetPassword')),
   },
   {
-    path: '/job-listing',
+    path: '/freelancers',
     exact: true,
-    element: lazy(() => import('../pages/auth/Login')),
+    element: lazy(() => import('../pages/freelancers/Freelancers')),
   },
 ];

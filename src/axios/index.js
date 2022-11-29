@@ -11,3 +11,13 @@ export const freelancerApi = axios.create({
   baseURL: 'https://devfreelancersapi.supportpod.com/api',
   // baseURL: "http://localhost:8080",
 });
+
+export const setAuthToken = token => {
+  if (token) {
+    // Apply authorization token to every request if logged in
+    axios.defaults.headers.common["Authorization"] = token;
+  } else {
+    // Delete auth header
+    delete axios.defaults.headers.common["Authorization"];
+  }
+};

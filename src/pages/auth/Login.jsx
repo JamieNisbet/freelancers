@@ -1,28 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import Section from '../../components/Section';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import toast from 'react-hot-toast';
-import { freelancerApi } from '../../axios/index';
+import { loginUser } from '../../reducers/actions/authActions';
 import { login } from '../../config/Constants';
-import * as URL from '../../utils/apiEndpoints';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const storeState = useSelector((state) => state);
+
+  const { errors, auth } = storeState;
+  console.error(errors);
+  console.log(auth);
+
   const [state, setState] = useState({
     email: '',
     password: '',
+    errors: {},
   });
 
-  const onSubmit = () => {
-    const { email, password } = state;
+  useEffect(() => {
+    setState((current) => ({ ...current, errors: errors }));
+  }, [errors]);
 
-    freelancerApi
-      .post(URL.LOGIN, { email, password })
-      .then((res) => toast.success('Success', res.status))
-      .catch((err) => toast.error('Error', err));
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      return ;
+    }
+  }, [auth]);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const userData = {
+      email: state.email,
+      password: state.password,
+    };
+    dispatch(loginUser(userData));
   };
+
   return (
     <div className='mt-12 mb-60'>
+      {auth.isAuthenticated && (<Navigate replace to='/freelancers'/>)}
       <div className='mt-4 mb-4'>
         <Section heading={login.title} subheading={login.tagline} body={login.body} />
       </div>
