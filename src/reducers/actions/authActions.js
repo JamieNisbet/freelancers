@@ -8,7 +8,7 @@ import { LogOutLink } from '../../config/Constants';
 const navigate = useNavigate();
 
 // Register User
-export const registerUser = (userData, history) => (dispatch) => {
+export const registerUser = (userData) => (dispatch) => {
   axios
     .post(URL.REGISTER_URL, userData)
     .then((res) => {
@@ -42,7 +42,7 @@ export const confirmEmail = (userData) => (dispatch) => {
 };
 
 // Register User
-export const verifyEmail = (userData, history) => (dispatch) => {
+export const verifyEmail = (userData) => (dispatch) => {
   axios
     .post(URL.VERIFY_EMAIL, userData)
     .then((res) => {
@@ -58,7 +58,7 @@ export const verifyEmail = (userData, history) => (dispatch) => {
 };
 
 // Create User
-export const createAdminUser = (userData, history) => (dispatch) => {
+export const createAdminUser = (userData) => (dispatch) => {
   axios
     .post(URL.OLD_REGISTER_URL, userData)
     .then((res) => {
@@ -74,7 +74,7 @@ export const createAdminUser = (userData, history) => (dispatch) => {
 };
 
 // Update User
-export const updateAdminUser = (userData, history) => (dispatch) => {
+export const updateAdminUser = (userData) => (dispatch) => {
   axios
     .post(URL.UPDATE_ROLE, userData)
     .then((res) => {
@@ -124,7 +124,7 @@ export const loginUser = (userData) => (dispatch) => {
 
 // Set screenname
 const authRole = localStorage.getItem('userRole');
-export const setScreenName = (userData, history) => (dispatch) => {
+export const setScreenName = (userData) => (dispatch) => {
   axios
     .post(URL.SCREEN_NAME, userData)
     .then((res) => {
@@ -154,7 +154,7 @@ export const setScreenName = (userData, history) => (dispatch) => {
 };
 
 // remove profile pic
-export const removeProfilePicture = (userData, history) => (dispatch) => {
+export const removeProfilePicture = (userData) => (dispatch) => {
   axios
     .post(URL.REMOVE_PROFILE_PICTURE, userData)
     .then((res) => {
@@ -170,7 +170,7 @@ export const removeProfilePicture = (userData, history) => (dispatch) => {
 };
 
 // Forgot Password
-export const forgotPassword = (userData, history) => (dispatch) => {
+export const forgotPassword = (userData) => (dispatch) => {
   axios
     .post(URL.FORGOT_PASSWORD, userData)
     .then((res) => {
@@ -204,7 +204,7 @@ export const checkEmail = (userData) => (dispatch) => {
 };
 
 // Reset Password
-export const resetPassword = (userData, history) => (dispatch) => {
+export const resetPassword = (userData) => (dispatch) => {
   axios
     .post(URL.RESET_PASSWORD, userData)
     .then((res) => {
@@ -220,7 +220,7 @@ export const resetPassword = (userData, history) => (dispatch) => {
     );
 };
 
-export const updateProfile = (userData, history) => (dispatch) => {
+export const updateProfile = (userData) => (dispatch) => {
   axios
     .post(URL.UPDATE_PROFILE, userData)
     .then((res) => {
@@ -236,7 +236,7 @@ export const updateProfile = (userData, history) => (dispatch) => {
 };
 // update user
 
-export const updateUser = (userData, history) => (dispatch) => {
+export const updateUser = (userData) => (dispatch) => {
   axios
     .post(URL.UPDATE_PROFILE, userData)
     .then((res) => {
