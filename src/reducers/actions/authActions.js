@@ -1,9 +1,11 @@
 import { freelancerApi as axios, setAuthToken } from '../../axios/index';
 import jwt_decode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 import * as URL from '../../utils/apiEndpoints';
 
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING, SET_PLATFORM } from '../actions/types';
 import { LogOutLink } from '../../config/Constants';
+const navigate = useNavigate();
 
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
@@ -11,7 +13,7 @@ export const registerUser = (userData, history) => (dispatch) => {
     .post(URL.REGISTER_URL, userData)
     .then((res) => {
       console.log(res);
-      history.push('/registration-success');
+      navigate('/registration-success');
     })
     .catch((err) =>
       dispatch({
@@ -45,7 +47,7 @@ export const verifyEmail = (userData, history) => (dispatch) => {
     .post(URL.VERIFY_EMAIL, userData)
     .then((res) => {
       console.log(res);
-      history.push('/verification-email-sent');
+      navigate('/verification-email-sent');
     })
     .catch((err) =>
       dispatch({
@@ -61,7 +63,7 @@ export const createAdminUser = (userData, history) => (dispatch) => {
     .post(URL.OLD_REGISTER_URL, userData)
     .then((res) => {
       console.log(res);
-      history.push('/admin-users');
+      navigate('/admin-users');
     })
     .catch((err) =>
       dispatch({
@@ -77,7 +79,7 @@ export const updateAdminUser = (userData, history) => (dispatch) => {
     .post(URL.UPDATE_ROLE, userData)
     .then((res) => {
       console.log(res);
-      history.push('/admin-users');
+      navigate('/admin-users');
     })
     .catch((err) =>
       dispatch({
@@ -128,17 +130,17 @@ export const setScreenName = (userData, history) => (dispatch) => {
     .then((res) => {
       if (res.data === 'Success') {
         if (authRole == 1) {
-          history.push('/freelancers');
+          navigate('/freelancers');
         } else if (authRole == 2) {
-          history.push('/edit-profile');
+          navigate('/edit-profile');
         } else if (authRole == 3) {
-          history.push('/service-requests');
+          navigate('/service-requests');
         } else if (authRole == 4) {
-          history.push('/freelancers');
+          navigate('/freelancers');
         } else if (authRole == 5) {
-          history.push('/freelancers');
+          navigate('/freelancers');
         } else {
-          history.push('/dashboard');
+          navigate('/dashboard');
         }
       }
     })
@@ -152,12 +154,12 @@ export const setScreenName = (userData, history) => (dispatch) => {
 };
 
 // remove profile pic
-export const removeProfilePicture = (userData) => (dispatch) => {
+export const removeProfilePicture = (userData, history) => (dispatch) => {
   axios
     .post(URL.REMOVE_PROFILE_PICTURE, userData)
     .then((res) => {
       console.log(res);
-      history.push('/edit-profile');
+      navigate('/edit-profile');
     })
     .catch((err) =>
       dispatch({
@@ -207,7 +209,7 @@ export const resetPassword = (userData, history) => (dispatch) => {
     .post(URL.RESET_PASSWORD, userData)
     .then((res) => {
       console.log(res);
-      history.push('/reset-password-success');
+      navigate('/reset-password-success');
     })
 
     .catch((err) =>
@@ -223,7 +225,7 @@ export const updateProfile = (userData, history) => (dispatch) => {
     .post(URL.UPDATE_PROFILE, userData)
     .then((res) => {
       console.log(res);
-      history.push('/edit-profile');
+      navigate('/edit-profile');
     })
     .catch((err) =>
       dispatch({
@@ -239,7 +241,7 @@ export const updateUser = (userData, history) => (dispatch) => {
     .post(URL.UPDATE_PROFILE, userData)
     .then((res) => {
       console.log(res);
-      history.push('/id-verification');
+      navigate('/id-verification');
     })
     .catch((err) =>
       dispatch({
