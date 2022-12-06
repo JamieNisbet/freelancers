@@ -9,7 +9,10 @@ import { LogOutLink } from '../../config/Constants';
 export const registerUser = (userData, history) => (dispatch) => {
   axios
     .post(URL.REGISTER_URL, userData)
-    .then((res) => history.push('/registration-success'))
+    .then((res) => {
+      console.log(res);
+      history.push('/registration-success');
+    })
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -40,7 +43,10 @@ export const confirmEmail = (userData) => (dispatch) => {
 export const verifyEmail = (userData, history) => (dispatch) => {
   axios
     .post(URL.VERIFY_EMAIL, userData)
-    .then((res) => history.push('/verification-email-sent'))
+    .then((res) => {
+      console.log(res);
+      history.push('/verification-email-sent');
+    })
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -53,7 +59,10 @@ export const verifyEmail = (userData, history) => (dispatch) => {
 export const createAdminUser = (userData, history) => (dispatch) => {
   axios
     .post(URL.OLD_REGISTER_URL, userData)
-    .then((res) => history.push('/admin-users'))
+    .then((res) => {
+      console.log(res);
+      history.push('/admin-users');
+    })
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -66,7 +75,10 @@ export const createAdminUser = (userData, history) => (dispatch) => {
 export const updateAdminUser = (userData, history) => (dispatch) => {
   axios
     .post(URL.UPDATE_ROLE, userData)
-    .then((res) => history.push('/admin-users'))
+    .then((res) => {
+      console.log(res);
+      history.push('/admin-users');
+    })
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -140,10 +152,11 @@ export const setScreenName = (userData, history) => (dispatch) => {
 };
 
 // remove profile pic
-export const removeProfilePicture = (userData, history) => (dispatch) => {
+export const removeProfilePicture = (userData) => (dispatch) => {
   axios
     .post(URL.REMOVE_PROFILE_PICTURE, userData)
     .then((res) => {
+      console.log(res);
       history.push('/edit-profile');
     })
     .catch((err) =>
@@ -193,6 +206,7 @@ export const resetPassword = (userData, history) => (dispatch) => {
   axios
     .post(URL.RESET_PASSWORD, userData)
     .then((res) => {
+      console.log(res);
       history.push('/reset-password-success');
     })
 
@@ -208,6 +222,7 @@ export const updateProfile = (userData, history) => (dispatch) => {
   axios
     .post(URL.UPDATE_PROFILE, userData)
     .then((res) => {
+      console.log(res);
       history.push('/edit-profile');
     })
     .catch((err) =>
@@ -223,6 +238,7 @@ export const updateUser = (userData, history) => (dispatch) => {
   axios
     .post(URL.UPDATE_PROFILE, userData)
     .then((res) => {
+      console.log(res);
       history.push('/id-verification');
     })
     .catch((err) =>
