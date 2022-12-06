@@ -1,19 +1,17 @@
 import { freelancerApi as axios, setAuthToken } from '../../axios/index';
 import jwt_decode from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
 import * as URL from '../../utils/apiEndpoints';
 
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING, SET_PLATFORM } from '../actions/types';
 import { LogOutLink } from '../../config/Constants';
-const navigate = useNavigate();
 
 // Register User
-export const registerUser = (userData) => (dispatch) => {
+export const registerUser = (userData, history) => (dispatch) => {
   axios
     .post(URL.REGISTER_URL, userData)
     .then((res) => {
       console.log(res);
-      navigate('/registration-success');
+      history.push('/registration-success');
     })
     .catch((err) =>
       dispatch({
@@ -42,12 +40,12 @@ export const confirmEmail = (userData) => (dispatch) => {
 };
 
 // Register User
-export const verifyEmail = (userData) => (dispatch) => {
+export const verifyEmail = (userData, history) => (dispatch) => {
   axios
     .post(URL.VERIFY_EMAIL, userData)
     .then((res) => {
       console.log(res);
-      navigate('/verification-email-sent');
+      history.push('/verification-email-sent');
     })
     .catch((err) =>
       dispatch({
@@ -58,12 +56,12 @@ export const verifyEmail = (userData) => (dispatch) => {
 };
 
 // Create User
-export const createAdminUser = (userData) => (dispatch) => {
+export const createAdminUser = (userData, history) => (dispatch) => {
   axios
     .post(URL.OLD_REGISTER_URL, userData)
     .then((res) => {
       console.log(res);
-      navigate('/admin-users');
+      history.push('/admin-users');
     })
     .catch((err) =>
       dispatch({
@@ -74,12 +72,12 @@ export const createAdminUser = (userData) => (dispatch) => {
 };
 
 // Update User
-export const updateAdminUser = (userData) => (dispatch) => {
+export const updateAdminUser = (userData, history) => (dispatch) => {
   axios
     .post(URL.UPDATE_ROLE, userData)
     .then((res) => {
       console.log(res);
-      navigate('/admin-users');
+      history.push('/admin-users');
     })
     .catch((err) =>
       dispatch({
@@ -124,23 +122,23 @@ export const loginUser = (userData) => (dispatch) => {
 
 // Set screenname
 const authRole = localStorage.getItem('userRole');
-export const setScreenName = (userData) => (dispatch) => {
+export const setScreenName = (userData, history) => (dispatch) => {
   axios
     .post(URL.SCREEN_NAME, userData)
     .then((res) => {
       if (res.data === 'Success') {
         if (authRole == 1) {
-          navigate('/freelancers');
+          history.push('/freelancers');
         } else if (authRole == 2) {
-          navigate('/edit-profile');
+          history.push('/edit-profile');
         } else if (authRole == 3) {
-          navigate('/service-requests');
+          history.push('/service-requests');
         } else if (authRole == 4) {
-          navigate('/freelancers');
+          history.push('/freelancers');
         } else if (authRole == 5) {
-          navigate('/freelancers');
+          history.push('/freelancers');
         } else {
-          navigate('/dashboard');
+          history.push('/dashboard');
         }
       }
     })
@@ -154,12 +152,12 @@ export const setScreenName = (userData) => (dispatch) => {
 };
 
 // remove profile pic
-export const removeProfilePicture = (userData) => (dispatch) => {
+export const removeProfilePicture = (userData, history) => (dispatch) => {
   axios
     .post(URL.REMOVE_PROFILE_PICTURE, userData)
     .then((res) => {
       console.log(res);
-      navigate('/edit-profile');
+      history.push('/edit-profile');
     })
     .catch((err) =>
       dispatch({
@@ -204,12 +202,12 @@ export const checkEmail = (userData) => (dispatch) => {
 };
 
 // Reset Password
-export const resetPassword = (userData) => (dispatch) => {
+export const resetPassword = (userData, history) => (dispatch) => {
   axios
     .post(URL.RESET_PASSWORD, userData)
     .then((res) => {
       console.log(res);
-      navigate('/reset-password-success');
+      history.push('/reset-password-success');
     })
 
     .catch((err) =>
@@ -220,12 +218,12 @@ export const resetPassword = (userData) => (dispatch) => {
     );
 };
 
-export const updateProfile = (userData) => (dispatch) => {
+export const updateProfile = (userData, history) => (dispatch) => {
   axios
     .post(URL.UPDATE_PROFILE, userData)
     .then((res) => {
       console.log(res);
-      navigate('/edit-profile');
+      history.push('/edit-profile');
     })
     .catch((err) =>
       dispatch({
@@ -236,12 +234,12 @@ export const updateProfile = (userData) => (dispatch) => {
 };
 // update user
 
-export const updateUser = (userData) => (dispatch) => {
+export const updateUser = (userData, history) => (dispatch) => {
   axios
     .post(URL.UPDATE_PROFILE, userData)
     .then((res) => {
       console.log(res);
-      navigate('/id-verification');
+      history.push('/id-verification');
     })
     .catch((err) =>
       dispatch({
