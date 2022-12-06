@@ -1,20 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { GET_ERRORS } from '../reducers/actions/types';
 
-export const errorSlice = createSlice({
-  name: 'error',
-  initialState: {
-    errors: {},
-  },
-  reducers: {
-    setErrors: (state, action) => {
-        state.errors = action.payload
-    },
-    clearErrors: (state) => {
-        state.errors = {}
-    }
+const initialState = {};
+
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case GET_ERRORS:
+      return action.payload;
+    default:
+      return state;
   }
-})
-
-export const { setErrors, clearErrors } = errorSlice.actions
-
-export default errorSlice.reducer
+}

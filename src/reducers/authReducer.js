@@ -1,28 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
-// eslint-disable-next-line no-undef
+import { SET_CURRENT_USER, SET_PLATFORM, USER_LOADING } from '../reducers/actions/types';
+
 const isEmpty = require('is-empty');
 
-export const authSlice = createSlice({
-  name: 'auth',
-  initialState: {
-    isAuthenticated: false,
-    user: {},
-    loading: false,
-    platform: [],
-  },
-  reducers: {
-    setUser: (state, action) => {
-      return { ...state, isAuthenticated: !isEmpty(action.payload), user: action.payload };
-    },
-    setPlatform: (state, action) => {
-      return { ...state, platform: action.payload };
-    },
-    setUserLoading: (state) => {
-      return { ...state, loading: true };
-    },
-  },
-});
+const initialState = {
+  isAuthenticated: false,
+  user: {},
+  loading: false,
+  platform: [],
+};
 
-export const { setUser, setUserLoading, setPlatform } = authSlice.actions;
-
-export default authSlice.reducer;
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case SET_CURRENT_USER:
+      return {
+        ...state,
+        isAuthenticated: !isEmpty(action.payload),
+        user: action.payload,
+      };
+    case USER_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SET_PLATFORM:
+      return {
+        ...state,
+        platform: action?.platform,
+      };
+    default:
+      return state;
+  }
+}

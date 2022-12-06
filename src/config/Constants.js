@@ -1,7 +1,3 @@
-export const jwtHeader = {
-  headers: { Authorization: `${localStorage.getItem('jwtToken')}` },
-};
-
 export const welcome = {
   title: 'Support Pod',
   tagline: 'Join our network of talented certified experts',
@@ -13,3 +9,5 @@ export const login = {
   tagline: 'Freelancer Network',
   body: 'Come see the latest jobs available, filtered to your skills and interests',
 };
+
+export const LogOutLink = 'https://devlogin.supportpod.com/login.html';

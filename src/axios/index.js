@@ -8,16 +8,16 @@ export const adminApi = axios.create({
 
 export const freelancerApi = axios.create({
   // baseURL: "https://freelancersapi.supportpod.com",
-  baseURL: 'https://devfreelancersapi.supportpod.com/api',
+  baseURL: 'https://devfreelancersapi.supportpod.com',
   // baseURL: "http://localhost:8080",
 });
 
-export const setAuthToken = token => {
+export const setAuthToken = (token) => {
   if (token) {
     // Apply authorization token to every request if logged in
-    axios.defaults.headers.common["Authorization"] = token;
+    axios.defaults.headers.common['Authorization'] = token;
   } else {
     // Delete auth header
-    delete axios.defaults.headers.common["Authorization"];
+    delete axios.defaults.headers.common['Authorization'];
   }
 };
