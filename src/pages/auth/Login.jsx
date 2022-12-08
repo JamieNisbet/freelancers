@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Section from '../../components/Section';
 import Input from '../../components/Input';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import { loginUser } from '../../reducers/actions/authActions';
 import { login } from '../../config/Constants';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const storeState = useSelector((state) => state);
 
   const { errors, auth } = storeState;
@@ -19,6 +21,7 @@ const Login = () => {
     email: '',
     password: '',
     errors: {},
+    emailValidation: true,
   });
 
   useEffect(() => {
@@ -27,7 +30,22 @@ const Login = () => {
 
   useEffect(() => {
     if (auth.isAuthenticated) {
-      return ;
+      if (auth.user.isEmailVerified) {
+        if (
+          auth.user.userRole === 1 || // Admin
+          auth.user.userRole === 4 || // Operational Manager
+          auth.user.userRole === 5 // Resourcer
+        ) {
+          navigate('/freelancers');
+        } else if (auth.user.userRole === 3) {
+          // Service manager
+          navigate('/service-requests');
+        } else if (auth.user.userRole === 2 && auth.user.isActive === true) {
+          navigate('/bids');
+        } else {
+          navigate('/dashboard');
+        }
+      }
     }
   }, [auth]);
 
@@ -42,7 +60,6 @@ const Login = () => {
 
   return (
     <div className='mt-12 mb-60'>
-      {auth.isAuthenticated && (<Navigate replace to='/freelancers'/>)}
       <div className='mt-4 mb-4'>
         <Section heading={login.title} subheading={login.tagline} body={login.body} />
       </div>
@@ -72,9 +89,9 @@ const Login = () => {
         </div>
         <p className='mt-3 text-center'>
           Not registered yet?{' '}
-          <a href='/register' className='text-blue-600 hover:underline dark:text-blue-500'>
+          <Link to='/register' className='text-blue-600 hover:underline dark:text-blue-500'>
             Click Here!
-          </a>
+          </Link>
         </p>
       </div>
     </div>

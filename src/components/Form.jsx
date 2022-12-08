@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from './Input';
+import { Link } from 'react-router-dom';
 import Button from './Button';
 import Switch from './Switch';
 import PropTypes from 'prop-types';
@@ -36,12 +37,12 @@ const Form = ({ buttonOne, buttonTwo, actionOne, actionTwo }) => {
               label={
                 <p>
                   I agree with the{' '}
-                  <a
-                    href='https://google.com'
+                  <Link
+                    to='https://google.com'
                     className='text-blue-600 hover:underline dark:text-blue-500'
                   >
                     terms and conditions
-                  </a>
+                  </Link>
                 </p>
               }
             />

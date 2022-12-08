@@ -1,8 +1,12 @@
 import React from 'react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+  const storeState = useSelector((state) => state);
+  const { auth } = storeState;
   return (
     <nav className='flex flex-wrap items-center justify-between bg-teal-500 p-6'>
       <div className='mr-6 flex flex-shrink-0 items-center text-white'>
@@ -21,14 +25,16 @@ const NavBar = () => {
         </button>
       </div>
       <div className='block w-full flex-grow lg:flex lg:w-auto lg:items-center'>
-        <div className='text-sm lg:flex-grow'>
-          <a
-            href='/'
-            className='mt-4 mr-4 block text-teal-200 hover:text-white lg:mt-0 lg:inline-block'
-          >
-            Login
-          </a>
-        </div>
+        {!auth.isAuthenticated && (
+          <div className='text-sm lg:flex-grow'>
+            <Link
+              to='/login'
+              className='mt-4 mr-4 block text-teal-200 hover:text-white lg:mt-0 lg:inline-block'
+            >
+              Login
+            </Link>
+          </div>
+        )}
         <div
           onClick={() => toast.success('Hello')}
           className='mt-4 inline-block rounded border border-white px-4 py-2 text-sm leading-none
