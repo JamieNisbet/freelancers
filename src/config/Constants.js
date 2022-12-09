@@ -11,3 +11,4 @@ export const login = {
 };
 
 export const LogOutLink = 'https://devlogin.supportpod.com/login.html';
+export const profileImgUrl = 'https://devfreelancersapi.supportpod.com/';

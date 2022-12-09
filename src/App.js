@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Footer from './components/Footer';
-import Header from './components/NavBar';
+import NavBar from './layout/NavBar';
 
 import { setAuthToken } from './axios/index';
 import store from './store';
@@ -55,8 +55,8 @@ const privateRouteComponents = privateRoutes.map((route) => (
 
 const App = () => {
   return (
-    <>
-      <Header />
+    <div className='h-screen bg-blue'>
+      <NavBar />
       <Routes>
         {publicRouteComponents}
         {privateRouteComponents}
@@ -81,7 +81,7 @@ const App = () => {
         }}
       />
       <Footer />
-    </>
+    </div>
   );
 };
 
