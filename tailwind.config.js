@@ -22,6 +22,8 @@ module.exports = {
       teal: '#395B64',
       blue: '#A5C9CA',
       gradient: '#E7F6F2',
+      green: '#50C878',
+      red: '#EE1212',
     },
   },
   plugins: [],

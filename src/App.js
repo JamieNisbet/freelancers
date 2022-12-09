@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Footer from './components/Footer';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import NavBar from './layout/NavBar';
 
 import { setAuthToken } from './axios/index';
@@ -15,6 +15,7 @@ import { Toaster } from 'react-hot-toast'; // Toast Notifications
 
 import Protected from './config/Protected';
 import { publicRoutes, privateRoutes } from './config/routes'; // Publicly Available Routes
+import Loading from './components/Loading';
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -29,7 +30,15 @@ if (localStorage.jwtToken) {
 }
 
 const publicRouteComponents = publicRoutes.map((route) => (
-  <Route key={route} path={route.path} element={<route.element />} />
+  <Route
+    key={route}
+    path={route.path}
+    element={
+      <Suspense fallback={<Loading />}>
+        <route.element />
+      </Suspense>
+    }
+  />
 ));
 
 const privateRouteComponents = privateRoutes.map((route) => (
@@ -37,42 +46,52 @@ const privateRouteComponents = privateRoutes.map((route) => (
     key={route}
     path={route.path}
     element={
-      <Protected>
-        <route.element />
-      </Protected>
+      <Suspense fallback={<Loading />}>
+        <Protected>
+          <route.element />
+        </Protected>
+      </Suspense>
     }
   />
 ));
 
 const App = () => {
+  const storeState = useSelector((state) => state);
+  const { loading } = storeState;
   return (
-    <div className='h-screen bg-blue'>
-      <NavBar />
-      <Routes>
-        {publicRouteComponents}
-        {privateRouteComponents}
-      </Routes>
-      <Toaster
-        toastOptions={{
-          success: {
-            style: {
-              borderRadius: '12px',
-              background: '#333',
-              color: '#fff',
-            },
-          },
-          error: {
-            style: {
-              borderRadius: '12px',
-              background: '#333',
-              color: '#fff',
-            },
-          },
-          duration: 4000,
-        }}
-      />
-      <Footer />
-    </div>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className='h-screen bg-blue'>
+          <NavBar />
+          <Routes>
+            {publicRouteComponents}
+            {privateRouteComponents}
+          </Routes>
+          <Toaster
+            toastOptions={{
+              success: {
+                style: {
+                  borderRadius: '12px',
+                  background: '#333',
+                  color: '#fff',
+                },
+              },
+              error: {
+                style: {
+                  borderRadius: '12px',
+                  background: '#333',
+                  color: '#fff',
+                },
+              },
+              duration: 4000,
+            }}
+          />
+          <Footer />
+        </div>
+      )}
+    </>
   );
 };
 
