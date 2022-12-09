@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import TableItem from '../../components/TableItem';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../../reducers/actions/uiActions';
 import Dropdown from '../../components/Dropdown';
 
-// import { useSelector } from 'react-redux';
-
-function AllBids() {
+export const AllBids = () => {
   const dispatch = useDispatch();
-  // const { auth } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
   const [state, setState] = useState({
     bids: [],
   });
-  // Description : Fetching freelancers
+
   useEffect(() => {
     dispatch(setLoading(true));
     fetchBids();
@@ -71,9 +69,15 @@ function AllBids() {
               <th scope='col' className='py-3 px-6'>
                 Budget
               </th>
-              <th scope='col' className='py-3 px-6'>
-                Proposals
-              </th>
+              {auth.user.userRole !== 2 ? (
+                <th scope='col' className='py-3 px-6'>
+                  Proposals
+                </th>
+              ) : (
+                <th scope='col' className='py-3 px-6'>
+                  Action
+                </th>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -85,6 +89,6 @@ function AllBids() {
       </div>
     </>
   );
-}
+};
 
 export default AllBids;

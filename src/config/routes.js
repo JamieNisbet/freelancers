@@ -69,12 +69,6 @@ export const privateRoutes = [
     element: lazy(() => import('../pages/freelancers/Freelancers')),
   },
   {
-    path: '/bids',
-
-    exact: true,
-    element: lazy(() => import('../pages/serviceManager/Bids')),
-  },
-  {
     path: '/admin',
     exact: true,
     element: lazy(() => import('../pages/admin/Admin')),
@@ -342,7 +336,7 @@ export const MenuConstants = {
   freelancer: [
     {
       title: 'Bids',
-      route: '/bids',
+      route: '/all-bids',
     },
     {
       title: 'Skills',

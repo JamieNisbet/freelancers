@@ -8,9 +8,13 @@ import { useLocation } from 'react-router-dom';
 import { IoMdSchool } from 'react-icons/io';
 import { MdVerifiedUser } from 'react-icons/md';
 import { RiAuctionFill } from 'react-icons/ri';
+import { useSelector } from 'react-redux';
+import { AiOutlineEdit } from 'react-icons/ai';
+import { MdOutlineCancel } from 'react-icons/md';
 
 const TableItem = ({ item }) => {
   const location = useLocation();
+  const { auth } = useSelector((state) => state);
   return (
     <>
       {location.pathname === '/freelancers' && (
@@ -137,20 +141,23 @@ const TableItem = ({ item }) => {
             </div>
           </td>
           <td className='py-4 px-6'>
-            <a
-              href='#'
-              type='button'
-              data-modal-toggle='editUserModal'
-              className='text-blue-600 dark:text-blue-500 font-medium hover:underline'
-            >
-              {item.participants.length !== 0 ? (
+            <div className='text-blue-600 dark:text-blue-500 font-medium hover:underline'>
+              {auth.user.userRole !== 2 && (
                 <div className='align-items inline-flex rounded-lg bg-blue p-3 text-teal'>
                   {item.participants.length} <RiAuctionFill className='ml-2' size='1.2rem' />
                 </div>
-              ) : (
-                'No Bids'
               )}
-            </a>
+              {auth.user.userRole === 2 && item.status === 'open' && (
+                <div className='align-items inline-flex w-32 rounded-lg bg-blue p-3 text-gradient'>
+                  <AiOutlineEdit size='2rem' /> Bid Now
+                </div>
+              )}
+              {auth.user.userRole === 2 && item.status === 'closed' && (
+                <div className='align-items inline-flex w-32 rounded-lg bg-blue p-3 text-gradient'>
+                  <MdOutlineCancel size='2rem' /> Closed
+                </div>
+              )}
+            </div>
           </td>
         </tr>
       )}
