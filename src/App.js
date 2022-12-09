@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import Footer from './components/Footer';
+import { useDispatch, useSelector } from 'react-redux';
 import NavBar from './layout/NavBar';
 
 import { setAuthToken } from './axios/index';
@@ -28,15 +29,7 @@ if (localStorage.jwtToken) {
 }
 
 const publicRouteComponents = publicRoutes.map((route) => (
-  <Route
-    key={route}
-    path={route.path}
-    element={
-      <Suspense fallback={<>...</>}>
-        <route.element />
-      </Suspense>
-    }
-  />
+  <Route key={route} path={route.path} element={<route.element />} />
 ));
 
 const privateRouteComponents = privateRoutes.map((route) => (
@@ -44,11 +37,9 @@ const privateRouteComponents = privateRoutes.map((route) => (
     key={route}
     path={route.path}
     element={
-      <Suspense fallback={<>...</>}>
-        <Protected>
-          <route.element />
-        </Protected>
-      </Suspense>
+      <Protected>
+        <route.element />
+      </Protected>
     }
   />
 ));
