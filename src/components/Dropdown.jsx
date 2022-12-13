@@ -27,12 +27,14 @@ const Dropdown = ({ text }) => {
               aria-labelledby='dropdownActionButton'
             >
               <li>
-                <a
-                  href='#'
+                <button
+                  onClick={() => {
+                    throw new Error('Boom');
+                  }}
                   className='hover:bg-gray-100 dark:hover:bg-gray-600 block py-2 px-4 dark:hover:text-white'
                 >
                   Reward
-                </a>
+                </button>
               </li>
               <li>
                 <a

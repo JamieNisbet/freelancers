@@ -396,14 +396,14 @@ export const MenuConstants = {
       title: 'Customers',
       route: '/customers',
     },
-    {
-      title: 'Customer Status',
-      route: '/customer-status',
-    },
-    {
-      title: 'Customer Categories',
-      route: '/customer-category',
-    },
+    // {
+    //   title: 'Customer Status',
+    //   route: '/customer-status',
+    // },
+    // {
+    //   title: 'Customer Categories',
+    //   route: '/customer-category',
+    // },
     {
       title: 'Partners',
       route: '/partners',
@@ -416,18 +416,18 @@ export const MenuConstants = {
       title: 'Purchase Orders',
       route: '/purchase-orders',
     },
-    {
-      title: 'Jira Requests',
-      route: '/jira-requests',
-    },
-    {
-      title: 'Q&A',
-      route: '/qa',
-    },
-    {
-      title: 'Services',
-      route: '/freelancer-services',
-    },
+    // {
+    //   title: 'Jira Requests',
+    //   route: '/jira-requests',
+    // },
+    // {
+    //   title: 'Q&A',
+    //   route: '/qa',
+    // },
+    // {
+    //   title: 'Services',
+    //   route: '/freelancer-services',
+    // },
   ],
   serviceManager: [
     {

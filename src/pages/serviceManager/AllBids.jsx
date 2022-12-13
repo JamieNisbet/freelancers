@@ -10,6 +10,7 @@ export const AllBids = () => {
   const { auth } = useSelector((state) => state);
   const [state, setState] = useState({
     bids: [],
+    errors: {},
   });
 
   useEffect(() => {

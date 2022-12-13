@@ -1,9 +1,10 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from './components/Footer';
 import { useSelector } from 'react-redux';
-import NavBar from './layout/NavBar';
+import Header from './layout/Header';
 
 import { setAuthToken } from './axios/index';
 import store from './store';
@@ -63,33 +64,35 @@ const App = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className='h-screen bg-blue'>
-          <NavBar />
-          <Routes>
-            {publicRouteComponents}
-            {privateRouteComponents}
-          </Routes>
-          <Toaster
-            toastOptions={{
-              success: {
-                style: {
-                  borderRadius: '12px',
-                  background: '#333',
-                  color: '#fff',
+        <Router>
+          <div>
+            <Header />
+            <Routes>
+              {publicRouteComponents}
+              {privateRouteComponents}
+            </Routes>
+            <Toaster
+              toastOptions={{
+                success: {
+                  style: {
+                    borderRadius: '12px',
+                    background: '#333',
+                    color: '#fff',
+                  },
                 },
-              },
-              error: {
-                style: {
-                  borderRadius: '12px',
-                  background: '#333',
-                  color: '#fff',
+                error: {
+                  style: {
+                    borderRadius: '12px',
+                    background: '#333',
+                    color: '#fff',
+                  },
                 },
-              },
-              duration: 4000,
-            }}
-          />
-          <Footer />
-        </div>
+                duration: 4000,
+              }}
+            />
+            <Footer />
+          </div>
+        </Router>
       )}
     </>
   );

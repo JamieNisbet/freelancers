@@ -33,7 +33,7 @@ function Freelancers() {
   };
   return (
     <>
-      <div className='sm:rounded-lg relative m-auto mt-5 w-4/5 overflow-x-auto rounded-lg shadow-md'>
+      <div className='relative m-auto mt-5 w-4/5 overflow-x-auto rounded-lg shadow-md sm:rounded-lg'>
         <div className='flex items-center justify-between bg-teal p-4'>
           <Dropdown text='Actions' />
           <label htmlFor='table-search' className='sr-only'>

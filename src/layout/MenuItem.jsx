@@ -13,7 +13,7 @@ const MenuItem = ({ permission, text, ...rest }) => {
       {!permission || auth.user.userRole === permission ? (
         <Link
           {...rest}
-          className='sm:w-auto w-full rounded-lg bg-gradient  p-2 text-center text-sm font-medium text-navy focus:underline'
+          className='ml-2 rounded-lg bg-gradient p-2 text-center text-sm font-medium text-navy hover:underline focus:underline sm:w-auto'
         >
           {text}
         </Link>
@@ -23,7 +23,7 @@ const MenuItem = ({ permission, text, ...rest }) => {
 };
 
 MenuItem.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   permission: PropTypes.string,
 };
 
