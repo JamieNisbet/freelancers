@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+import ErrorBoundary from './pages/ErrorBoundary';
 
 import './index.css';
 
@@ -10,6 +11,8 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Suspense fallback={<Loading />}>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </Suspense>,
 );

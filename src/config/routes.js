@@ -53,11 +53,6 @@ export const publicRoutes = [
 
 export const privateRoutes = [
   {
-    path: '/component-tester',
-    exact: true,
-    element: lazy(() => import('../pages/ComponentTester')),
-  },
-  {
     path: '/job-listing',
     exact: true,
     element: lazy(() => import('../pages/freelancers/JobListing')),
