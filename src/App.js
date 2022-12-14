@@ -1,22 +1,16 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from './components/Footer';
-import { useSelector } from 'react-redux';
 import Header from './layout/Header';
-
-import { setAuthToken } from './axios/index';
+import { setAuthToken } from './axios';
 import store from './store';
+import { Provider } from 'react-redux';
 import { setCurrentUser, logoutUser } from './reducers/actions/authActions';
-
 import { Toaster } from 'react-hot-toast'; // Toast Notifications
-// import FreelancerProfile from './components/profile/FreelancerProfile';
-// import ErrorBoundries from './shared/ErrorComponent';
-
 import Protected from './config/Protected';
 import { publicRoutes, privateRoutes } from './config/routes'; // Publicly Available Routes
-import Loading from './components/Loading';
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -31,15 +25,7 @@ if (localStorage.jwtToken) {
 }
 
 const publicRouteComponents = publicRoutes.map((route) => (
-  <Route
-    key={route}
-    path={route.path}
-    element={
-      <Suspense fallback={<Loading />}>
-        <route.element />
-      </Suspense>
-    }
-  />
+  <Route key={route} path={route.path} element={<route.element />} />
 ));
 
 const privateRouteComponents = privateRoutes.map((route) => (
@@ -47,23 +33,17 @@ const privateRouteComponents = privateRoutes.map((route) => (
     key={route}
     path={route.path}
     element={
-      <Suspense fallback={<Loading />}>
-        <Protected>
-          <route.element />
-        </Protected>
-      </Suspense>
+      <Protected>
+        <route.element />
+      </Protected>
     }
   />
 ));
 
 const App = () => {
-  const storeState = useSelector((state) => state);
-  const { loading } = storeState;
   return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : (
+    <Provider store={store}>
+      <>
         <Router>
           <div>
             <Header />
@@ -93,8 +73,8 @@ const App = () => {
             <Footer />
           </div>
         </Router>
-      )}
-    </>
+      </>
+    </Provider>
   );
 };
 

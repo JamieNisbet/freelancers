@@ -40,7 +40,7 @@ const Login = () => {
           // Service manager
           navigate('/service-requests');
         } else if (auth.user.userRole === 2 && auth.user.isActive === true) {
-          navigate('/bids');
+          navigate('/all-bids');
         } else {
           navigate('/dashboard');
         }
