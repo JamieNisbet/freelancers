@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import BidListItem from '../../components/BidListItem';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setLoading } from '../../reducers/actions/uiActions';
 import Dropdown from '../../components/Dropdown';
 
 export const AllBids = () => {
   const dispatch = useDispatch();
-  const { auth } = useSelector((state) => state);
+  // const { auth } = useSelector((state) => state);
   const [state, setState] = useState({
     bids: [],
     errors: {},
@@ -23,10 +24,11 @@ export const AllBids = () => {
     axios
       .get('https://devfreelancersapi.supportpod.com/api/bids/bids')
       .then((res) => {
+        const bids = res.data;
         console.log(res.data);
         setState((prev) => ({
           ...prev,
-          bids: res.data,
+          bids: bids,
         }));
       })
       .catch((err) => console.log(err));
@@ -72,11 +74,12 @@ export const AllBids = () => {
                 key={idx}
                 id={bid.serviceRequestId}
                 title={bid.title}
-                description={bid.description}
-                status={bid.status}
                 daysLeft={calDaysLeft(bid.endDate)}
+                buttonAction={() => (
+                  <Navigate to={`/bid-request?id=${bid.serviceRequestId}`} replace />
+                )}
                 buttonText='More Info'
-                buttonAction={() => console.log(auth.user.firstname)}
+                status={bid.status}
               />
             ))}
           </div>

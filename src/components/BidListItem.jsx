@@ -39,7 +39,7 @@ const BidListItem = ({ id, title, daysLeft, buttonAction, buttonText, status }) 
             </div>
           </div>
           <div
-            onClick={buttonAction}
+            onClick={buttonAction()}
             className='absolute top-[86px] left-[525px] box-border flex h-[31px] w-[166px] flex-row-reverse items-center justify-center overflow-hidden rounded-[25px] border-[3px] border-[#2c3e50]'
             style={{
               filter: 'drop-shadow(0px 4px 4px rgba(0,0,0,0.25))',
@@ -49,14 +49,25 @@ const BidListItem = ({ id, title, daysLeft, buttonAction, buttonText, status }) 
               {buttonText}
             </p>
           </div>
-          <div className='absolute top-20 left-[19px] box-border flex w-[489px] items-center justify-between overflow-hidden rounded-[10px] bg-[#5e92f3] px-[25px] py-2.5'>
-            <p className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-center text-[22px] font-semibold leading-[1] text-[#2c3e50]'>
-              Closes in
-            </p>
-            <p className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-center text-[22px] font-semibold leading-[1] text-[#dfe4ea]'>
-              {daysLeft} days
-            </p>
-          </div>
+          {daysLeft > 0 ? (
+            <div className='absolute top-20 left-[19px] box-border flex w-[489px] items-center justify-between overflow-hidden rounded-[10px] bg-[#5e92f3] px-[25px] py-2.5'>
+              <p className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-center text-[22px] font-semibold leading-[1] text-[#2c3e50]'>
+                Closes in
+              </p>
+              <p className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-center text-[22px] font-semibold leading-[1] text-[#dfe4ea]'>
+                {daysLeft} days
+              </p>
+            </div>
+          ) : (
+            <div className='absolute top-20 left-[19px] box-border flex w-[489px] items-center justify-between overflow-hidden rounded-[10px] bg-[#5e92f3] px-[25px] py-2.5'>
+              <p className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-center text-[22px] font-semibold leading-[1] text-[#2c3e50]'>
+                Status
+              </p>
+              <p className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-center text-[22px] font-semibold leading-[1] text-[#dfe4ea]'>
+                Closed
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
