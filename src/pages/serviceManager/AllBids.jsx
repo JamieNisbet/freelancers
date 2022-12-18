@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import TableItem from '../../components/TableItem';
+import BidListItem from '../../components/BidListItem';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../../reducers/actions/uiActions';
@@ -31,9 +31,25 @@ export const AllBids = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  const calDaysLeft = (endDate) => {
+    var dateFuture = new Date(endDate);
+    var dateNow = new Date();
+
+    var seconds = Math.floor((dateFuture - dateNow) / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    var days = Math.floor(hours / 24);
+
+    hours = hours - days * 24;
+    minutes = minutes - days * 24 * 60 - hours * 60;
+    seconds = seconds - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60;
+    return days;
+  };
+
   return (
     <>
-      <div className='sm:rounded-lg relative m-auto mt-5 w-4/5 overflow-x-auto rounded-lg shadow-md'>
+      <div className='relative m-auto mt-5 w-fit overflow-x-auto rounded-lg shadow-md sm:rounded-lg'>
         <div className='flex items-center justify-between bg-teal p-4'>
           <Dropdown text='Actions' />
           <label htmlFor='table-search' className='sr-only'>
@@ -49,44 +65,22 @@ export const AllBids = () => {
             />
           </div>
         </div>
-        <table className='w-full bg-teal text-left text-gradient'>
-          <thead className='text-gray-700 dark:bg-gray-700 dark:text-gray-400 bg-teal text-xs uppercase'>
-            <tr>
-              <th scope='col' className='p-4'>
-                <div className='flex items-center'>
-                  <input
-                    id='checkbox-all-search'
-                    type='checkbox'
-                    className='text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600 h-4 w-4 rounded focus:ring-2'
-                  />
-                </div>
-              </th>
-              <th scope='col' className='py-3 px-6'>
-                ID
-              </th>
-              <th scope='col' className='py-3 px-6'>
-                Title & Description
-              </th>
-              <th scope='col' className='py-3 px-6'>
-                Budget
-              </th>
-              {auth.user.userRole !== 2 ? (
-                <th scope='col' className='py-3 px-6'>
-                  Proposals
-                </th>
-              ) : (
-                <th scope='col' className='py-3 px-6'>
-                  Action
-                </th>
-              )}
-            </tr>
-          </thead>
-          <tbody>
+        <div className='bg-teal text-left text-gradient'>
+          <div>
             {state.bids.map((bid, idx) => (
-              <TableItem key={idx} item={bid} />
+              <BidListItem
+                key={idx}
+                id={bid.serviceRequestId}
+                title={bid.title}
+                description={bid.description}
+                status={bid.status}
+                daysLeft={calDaysLeft(bid.endDate)}
+                buttonText='More Info'
+                buttonAction={() => console.log(auth.user.firstname)}
+              />
             ))}
-          </tbody>
-        </table>
+          </div>
+        </div>
       </div>
     </>
   );
