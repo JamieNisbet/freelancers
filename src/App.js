@@ -1,17 +1,14 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from './components/Footer';
-import Header from './components/NavBar';
-
-import { setAuthToken } from './axios/index';
+import Header from './layout/Header';
+import { setAuthToken } from './axios';
 import store from './store';
+import { Provider } from 'react-redux';
 import { setCurrentUser, logoutUser } from './reducers/actions/authActions';
-
 import { Toaster } from 'react-hot-toast'; // Toast Notifications
-// import FreelancerProfile from './components/profile/FreelancerProfile';
-// import ErrorBoundries from './shared/ErrorComponent';
-
 import Protected from './config/Protected';
 import { publicRoutes, privateRoutes } from './config/routes'; // Publicly Available Routes
 
@@ -28,15 +25,7 @@ if (localStorage.jwtToken) {
 }
 
 const publicRouteComponents = publicRoutes.map((route) => (
-  <Route
-    key={route}
-    path={route.path}
-    element={
-      <Suspense fallback={<>...</>}>
-        <route.element />
-      </Suspense>
-    }
-  />
+  <Route key={route} path={route.path} element={<route.element />} />
 ));
 
 const privateRouteComponents = privateRoutes.map((route) => (
@@ -44,44 +33,48 @@ const privateRouteComponents = privateRoutes.map((route) => (
     key={route}
     path={route.path}
     element={
-      <Suspense fallback={<>...</>}>
-        <Protected>
-          <route.element />
-        </Protected>
-      </Suspense>
+      <Protected>
+        <route.element />
+      </Protected>
     }
   />
 ));
 
 const App = () => {
   return (
-    <>
-      <Header />
-      <Routes>
-        {publicRouteComponents}
-        {privateRouteComponents}
-      </Routes>
-      <Toaster
-        toastOptions={{
-          success: {
-            style: {
-              borderRadius: '12px',
-              background: '#333',
-              color: '#fff',
-            },
-          },
-          error: {
-            style: {
-              borderRadius: '12px',
-              background: '#333',
-              color: '#fff',
-            },
-          },
-          duration: 4000,
-        }}
-      />
-      <Footer />
-    </>
+    <Provider store={store}>
+      <>
+        <Router>
+          <div>
+            <Header />
+            <Routes>
+              {publicRouteComponents}
+              {privateRouteComponents}
+            </Routes>
+            <Toaster
+              toastOptions={{
+                success: {
+                  style: {
+                    borderRadius: '12px',
+                    background: '#333',
+                    color: '#fff',
+                  },
+                },
+                error: {
+                  style: {
+                    borderRadius: '12px',
+                    background: '#333',
+                    color: '#fff',
+                  },
+                },
+                duration: 4000,
+              }}
+            />
+            <Footer />
+          </div>
+        </Router>
+      </>
+    </Provider>
   );
 };
 

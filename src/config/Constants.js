@@ -10,4 +10,5 @@ export const login = {
   body: 'Come see the latest jobs available, filtered to your skills and interests',
 };
 
-export const LogOutLink = 'https://devlogin.supportpod.com/login.html';
+export const LogOutLink = 'https://supportpod.vercel.app/login';
+export const profileImgUrl = 'https://devfreelancersapi.supportpod.com/';

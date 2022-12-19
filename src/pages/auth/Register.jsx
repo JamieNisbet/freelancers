@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Section from '../../components/Section';
 import Input from '../../components/Input';
 import toast from 'react-hot-toast';
-import Switch from '../../components/Switch';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import { welcome } from '../../config/Constants';
 
@@ -32,11 +32,11 @@ const Register = () => {
   };
 
   return (
-    <div className='mt-12 mb-60'>
-      <div className='mt-4 mb-4'>
+    <div className='inline-flex items-center bg-blue pt-16 pb-16'>
+      <div className='mt-4 mb-4 w-2/5'>
         <Section heading={welcome.title} subheading={welcome.tagline} body={welcome.body} />
       </div>
-      <div className='m-auto w-1/4 rounded-lg bg-teal-500 p-5'>
+      <div className='m-auto w-1/4 rounded-lg bg-teal p-5'>
         <Input
           value={state.firstname}
           onChange={(e) => setState((current) => ({ ...current, firstname: e.target.value }))}
@@ -82,17 +82,36 @@ const Register = () => {
           placeholder='*****'
           label='Confirm Password'
         />
-        <Switch
-          active={state.termsConditions}
-          onSwitch={() =>
-            setState((current) => ({ ...current, termsConditions: !current.termsConditions }))
-          }
-          label='I agree with the terms and conditions'
-        />
+        <div className='mt-2 inline-flex'>
+          <Input
+            id='remember'
+            type='checkbox'
+            onChange={() =>
+              setState((current) => ({ ...current, termsConditions: !current.termsConditions }))
+            }
+            value={state.termsConditions}
+            className='focus:ring-3 font-lg focus:ring-blue-300 '
+            required
+          />
+        </div>
+        <label htmlFor='remember' className='ml-2 inline-flex text-lg text-gradient'>
+          <p>
+            I agree with the{' '}
+            <a href='#' className='text-blue hover:underline'>
+              terms and conditions
+            </a>
+          </p>
+        </label>
 
-        <div className='mt-5 flex justify-center'>
+        <div className='mt-5 flex justify-center text-blue'>
           <Button text='Sign Up' onClick={onSubmit} />
         </div>
+        <p className='mt-3 text-center text-blue'>
+          Already have an account?{' '}
+          <Link to='/login' className='text-blue-600 dark:text-blue-500 hover:underline'>
+            Click Here!
+          </Link>
+        </p>
       </div>
     </div>
   );

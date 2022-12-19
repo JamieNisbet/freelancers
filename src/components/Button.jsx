@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ text, ...rest }) => {
+const Button = ({ text, icon, ...rest }) => {
   return (
     <button
       {...rest}
-      className='w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto'
+      className='border-blue-500 mr-2 ml-2 mt-2 mb-2 rounded border bg-teal py-2 px-2 text-center font-semibold text-blue hover:border-transparent hover:bg-blue hover:text-white'
     >
+      {icon}
       {text}
     </button>
   );
 };
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  icon: PropTypes.element,
 };
 
 export default Button;

@@ -14,7 +14,6 @@ const Login = () => {
   const storeState = useSelector((state) => state);
 
   const { errors, auth } = storeState;
-  console.error(errors);
   console.log(auth);
 
   const [state, setState] = useState({
@@ -41,7 +40,7 @@ const Login = () => {
           // Service manager
           navigate('/service-requests');
         } else if (auth.user.userRole === 2 && auth.user.isActive === true) {
-          navigate('/bids');
+          navigate('/all-bids');
         } else {
           navigate('/dashboard');
         }
@@ -59,11 +58,11 @@ const Login = () => {
   };
 
   return (
-    <div className='mt-12 mb-60'>
+    <div className='bg-blue pt-5 pb-40'>
       <div className='mt-4 mb-4'>
         <Section heading={login.title} subheading={login.tagline} body={login.body} />
       </div>
-      <div className='m-auto w-1/4 rounded-lg bg-teal-500 p-5'>
+      <div className='m-auto w-1/4 rounded-lg bg-teal p-5'>
         <form>
           <Input
             value={state.email}
@@ -84,12 +83,12 @@ const Login = () => {
             label='Password'
           />
         </form>
-        <div className='mt-5 flex justify-center'>
+        <div className='mt-5 flex justify-center text-blue'>
           <Button text='Log In' onClick={onSubmit} />
         </div>
-        <p className='mt-3 text-center'>
+        <p className='mt-3 text-center text-blue'>
           Not registered yet?{' '}
-          <Link to='/register' className='text-blue-600 hover:underline dark:text-blue-500'>
+          <Link to='/register' className='text-blue-600 dark:text-blue-500 hover:underline'>
             Click Here!
           </Link>
         </p>

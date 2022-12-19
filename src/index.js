@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-
-import { BrowserRouter as Router } from 'react-router-dom';
+import ErrorBoundary from './pages/ErrorBoundary';
 
 import './index.css';
-import store from './store';
-import { Provider } from 'react-redux';
+
+import Loading from './components/Loading';
 
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
-    <Router>
+  <Suspense fallback={<Loading />}>
+    <ErrorBoundary>
       <App />
-    </Router>
-  </Provider>,
+    </ErrorBoundary>
+  </Suspense>,
 );
