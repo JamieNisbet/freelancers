@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import TableItem from '../../components/TableItem';
+// import TableItem from '../../components/TableItem';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../../reducers/actions/uiActions';
@@ -80,7 +80,7 @@ function Freelancers() {
           </thead>
           <tbody>
             {state.freelancers.map((fl, idx) => (
-              <TableItem key={idx} item={fl} />
+              <h4 key={idx}>{fl.firstname}</h4>
             ))}
           </tbody>
         </table>

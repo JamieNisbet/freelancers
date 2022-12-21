@@ -121,6 +121,7 @@ export const BID_DETAILS = '/api/bids/biddetails';
 export const BID_PROPOSAL_DETAILS = '/api/bidproposals/bidproposaldetails';
 export const SM_BIDS = '/api/bids/smbids';
 export const BIDS = '/api/bids/bids';
+export const FILTER_SEARCH_BIDS = '/api/bids/filtersearch';
 export const CREATE_BID_PROPOSAL = '/api/bidproposals/createbidproposal';
 export const UPDATE_OTHER_BIDS = '/api/bids/updateotherbids';
 export const UPDATE_BID_PARTICIPANTS = '/api/bids/updatebidparticipants';

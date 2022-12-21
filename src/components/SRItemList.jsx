@@ -20,7 +20,7 @@ const SRListItem = ({ id, title, category, customer, createdDate, status, button
         </div>
       </div>
       <div
-        onClick={buttonAction}
+        onClick={buttonAction()}
         className='absolute top-[135px] left-[1072px] box-border flex h-[42px] w-[252px] flex-row-reverse items-center justify-center overflow-hidden rounded-[25px] border-[3px] border-[#2c3e50]'
         style={{
           filter: 'drop-shadow(0px 4px 4px rgba(0,0,0,0.25))',

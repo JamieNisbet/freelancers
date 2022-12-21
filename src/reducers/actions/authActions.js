@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import * as URL from '../../utils/apiEndpoints';
 
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING, SET_PLATFORM } from '../actions/types';
-import { LogOutLink } from '../../config/Constants';
+import { constants } from '../../config/Constants';
 
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
@@ -277,7 +277,7 @@ export const logoutUser = () => (dispatch) => {
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
-  window.location.assign(`${LogOutLink}`);
+  window.location.assign(`${constants.logOut}`);
 };
 
 // Created By: Taniya Malviya

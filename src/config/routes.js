@@ -69,6 +69,10 @@ export const privateRoutes = [
     element: lazy(() => import('../pages/admin/Admin')),
   },
   {
+    path: '/bid-request',
+    element: lazy(() => import('../pages/serviceManager/Bid')),
+  },
+  {
     path: '/admin-users',
     exact: true,
     element: lazy(() => import('../pages/admin/AdminUsers')),

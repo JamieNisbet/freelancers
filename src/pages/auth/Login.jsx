@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Section from '../../components/Section';
-import Input from '../../components/Input';
+
 import { Link } from 'react-router-dom';
-import Button from '../../components/Button';
+
 import { loginUser } from '../../reducers/actions/authActions';
 import { login } from '../../config/Constants';
 
@@ -62,9 +62,9 @@ const Login = () => {
       <div className='mt-4 mb-4'>
         <Section heading={login.title} subheading={login.tagline} body={login.body} />
       </div>
-      <div className='m-auto w-1/4 rounded-lg bg-teal p-5'>
+      <div className='bg-teal m-auto w-1/4 rounded-lg p-5'>
         <form>
-          <Input
+          <input
             value={state.email}
             onChange={(e) => setState((current) => ({ ...current, email: e.target.value }))}
             className='mt-3'
@@ -73,7 +73,7 @@ const Login = () => {
             placeholder='example@mail.com'
             label='Email'
           />
-          <Input
+          <input
             value={state.password}
             onChange={(e) => setState((current) => ({ ...current, password: e.target.value }))}
             className='mt-3'
@@ -83,10 +83,10 @@ const Login = () => {
             label='Password'
           />
         </form>
-        <div className='mt-5 flex justify-center text-blue'>
-          <Button text='Log In' onClick={onSubmit} />
+        <div className='mt-5 flex justify-center text-white'>
+          <button onClick={onSubmit}>Log In</button>
         </div>
-        <p className='mt-3 text-center text-blue'>
+        <p className='text-blue mt-3 text-center'>
           Not registered yet?{' '}
           <Link to='/register' className='text-blue-600 dark:text-blue-500 hover:underline'>
             Click Here!

@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Footer from './components/Footer';
 import Header from './layout/Header';
 import { setAuthToken } from './axios';
 import store from './store';
@@ -70,7 +69,6 @@ const App = () => {
                 duration: 4000,
               }}
             />
-            <Footer />
           </div>
         </Router>
       </>

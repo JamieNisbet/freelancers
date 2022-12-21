@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Section from '../../components/Section';
-import Input from '../../components/Input';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import Button from '../../components/Button';
 import { welcome } from '../../config/Constants';
 
 const Register = () => {
@@ -37,7 +35,7 @@ const Register = () => {
         <Section heading={welcome.title} subheading={welcome.tagline} body={welcome.body} />
       </div>
       <div className='m-auto w-1/4 rounded-lg bg-teal p-5'>
-        <Input
+        <input
           value={state.firstname}
           onChange={(e) => setState((current) => ({ ...current, firstname: e.target.value }))}
           className='mt-3'
@@ -46,7 +44,7 @@ const Register = () => {
           placeholder='John'
           label='First Name'
         />
-        <Input
+        <input
           value={state.lastname}
           onChange={(e) => setState((current) => ({ ...current, lastname: e.target.value }))}
           className='mt-3'
@@ -55,7 +53,7 @@ const Register = () => {
           placeholder='Smith'
           label='Last Name'
         />
-        <Input
+        <input
           value={state.email}
           onChange={(e) => setState((current) => ({ ...current, email: e.target.value }))}
           className='mt-3'
@@ -64,7 +62,7 @@ const Register = () => {
           placeholder='example@mail.com'
           label='Email'
         />
-        <Input
+        <input
           value={state.password}
           onChange={(e) => setState((current) => ({ ...current, password: e.target.value }))}
           className='mt-3'
@@ -73,7 +71,7 @@ const Register = () => {
           placeholder='*****'
           label='Password'
         />
-        <Input
+        <input
           value={state.passwordConfirm}
           onChange={(e) => setState((current) => ({ ...current, passwordConfirm: e.target.value }))}
           className='mt-3'
@@ -83,7 +81,7 @@ const Register = () => {
           label='Confirm Password'
         />
         <div className='mt-2 inline-flex'>
-          <Input
+          <input
             id='remember'
             type='checkbox'
             onChange={() =>
@@ -104,7 +102,7 @@ const Register = () => {
         </label>
 
         <div className='mt-5 flex justify-center text-blue'>
-          <Button text='Sign Up' onClick={onSubmit} />
+          <button onClick={onSubmit}>Sign Up</button>
         </div>
         <p className='mt-3 text-center text-blue'>
           Already have an account?{' '}
