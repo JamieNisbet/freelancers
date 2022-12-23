@@ -4,6 +4,7 @@ import { MenuConstants } from '../config/routes';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { HiOutlineBell } from 'react-icons/hi';
+import { BiUserCircle } from 'react-icons/bi';
 // import { logoutUser } from '../reducers/actions/authActions';
 // import { toast } from 'react-hot-toast';
 // import { IoMdNotificationsOutline } from 'react-icons/io';
@@ -18,10 +19,10 @@ export default function Header() {
   return (
     <>
       {auth.isAuthenticated ? (
-        <div className='relative box-border block h-[126px] w-[1440px]'>
-          <div className='absolute top-0 left-0 box-border block h-[126px] w-[1440px]'>
-            <div className='absolute top-0 left-0 h-[126px] w-[1440px] bg-white' />
-            <div className='absolute top-0 left-0 box-border flex h-[126px] w-[1440px] items-center justify-end gap-8 px-5'>
+        <div className='relative box-border block h-[126px] w-full  bg-secondary'>
+          <div className='absolute top-0 left-0 box-border block h-[126px] w-full bg-secondary'>
+            <div className='absolute top-0 left-0 h-[126px] w-full bg-secondary' />
+            <div className='absolute top-0 left-0 box-border flex h-[126px] w-full items-center justify-end gap-8 bg-secondary px-5'>
               <p className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-center text-[25px] font-bold leading-[normal] text-[#2c3e50]'>
                 SUPPORT POD
               </p>
@@ -30,7 +31,7 @@ export default function Header() {
                   <NavLink
                     to={item.route}
                     key={index}
-                    className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-left text-lg leading-[normal] text-[#2c3e50]'
+                    className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-left text-lg leading-[normal] text-[#2c3e50] hover:underline'
                   >
                     {item.title}
                   </NavLink>
@@ -40,7 +41,7 @@ export default function Header() {
                   <NavLink
                     to={item.route}
                     key={index}
-                    className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-left text-lg leading-[normal] text-[#2c3e50]'
+                    className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-left text-lg leading-[normal] text-[#2c3e50] hover:underline'
                   >
                     {item.title}
                   </NavLink>
@@ -50,22 +51,29 @@ export default function Header() {
                   <NavLink
                     to={item.route}
                     key={index}
-                    className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-left text-lg leading-[normal] text-[#2c3e50]'
+                    className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-left text-lg leading-[normal] text-[#2c3e50] hover:underline'
                   >
                     {item.title}
                   </NavLink>
                 ))}
-              <HiOutlineBell className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-left text-lg leading-[normal] text-[#2c3e50]' />
+              <HiOutlineBell
+                size='1.5rem'
+                className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-left text-lg leading-[normal] text-[#2c3e50]'
+              />
+              <BiUserCircle
+                size='1.5rem'
+                className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-left text-lg leading-[normal] text-[#2c3e50]'
+              />
             </div>
             {/* <ButtonSecondary /> */}
             {/* <ButtonSecondary1 /> */}
           </div>
         </div>
       ) : (
-        <div className='relative box-border block h-[126px] w-[1440px]'>
-          <div className='absolute top-0 left-0 box-border block h-[126px] w-[1440px]'>
-            <div className='absolute top-0 left-0 h-[126px] w-[1440px] bg-white' />
-            <div className='absolute top-0 left-0 box-border flex h-[126px] w-[1440px] items-center justify-end gap-8 px-5'>
+        <div className='relative box-border block h-[126px] w-full bg-secondary'>
+          <div className='absolute top-0 left-0 box-border block h-[126px] w-full'>
+            <div className='absolute top-0 left-0 h-[126px] w-full ' />
+            <div className='absolute top-0 left-0 box-border flex h-[126px] w-full items-center justify-end gap-8 px-5'>
               <p className='flex-shrink-0 flex-grow-0 whitespace-pre-wrap text-center text-[25px] font-bold leading-[normal] text-[#2c3e50]'>
                 SUPPORT POD
               </p>

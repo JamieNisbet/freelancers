@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 // import { Navigate } from 'react-router-dom';
 // import BidListItem from '../../components/BidListItem';
 import { freelancerApi, adminApi, authToken } from '../../axios';
-import FilterBar from '../../components/FilterBar';
+// import FilterBar from '../../components/FilterBar';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../../reducers/actions/uiActions';
-import Table from '../../components/Table';
+// import Table from '../../components/Table';
 import * as URL from '../../utils/apiEndpoints';
+import ResponsiveTable from '../../components/ResponsiveTable';
 
 export const AllBids = () => {
   const dispatch = useDispatch();
@@ -80,13 +81,17 @@ export const AllBids = () => {
       .catch((err) => console.log(err));
   };
 
+  const allBids = state.bids.sort(function (a, b) {
+    return new Date(b.date) - new Date(a.date);
+  });
+  console.log(allBids);
   return (
     <>
       <div className='flex flex-row bg-primary'>
-        <div className='flex flex-col'>
+        {/* <div className='flex flex-col'>
           <FilterBar title='Status' options={['open', 'closed']} filterFunc={filterBids} />
           <FilterBar title='Category' options={state.categories} filterFunc={filterBids} />
-        </div>
+        </div> */}
 
         <div className='relative m-auto mt-5 w-fit overflow-x-auto rounded-lg shadow-md sm:rounded-lg'>
           <div className='bg-teal flex items-center justify-between p-4'>
@@ -110,7 +115,7 @@ export const AllBids = () => {
           </div>
           <div className='bg-teal text-gradient text-left'>
             <div>
-              <Table data={state.bids} />
+              <ResponsiveTable type='bids' array={allBids} />
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Header from './layout/Header';
+// import Header from './layout/Header';
 import { setAuthToken } from './axios';
 import store from './store';
 import { Provider } from 'react-redux';
@@ -10,6 +10,7 @@ import { setCurrentUser, logoutUser } from './reducers/actions/authActions';
 import { Toaster } from 'react-hot-toast'; // Toast Notifications
 import Protected from './config/Protected';
 import { publicRoutes, privateRoutes } from './config/routes'; // Publicly Available Routes
+import NavBar from './layout/NavBar';
 
 if (localStorage.jwtToken) {
   const token = localStorage.jwtToken;
@@ -45,7 +46,7 @@ const App = () => {
       <>
         <Router>
           <div>
-            <Header />
+            <NavBar />
             <Routes>
               {publicRouteComponents}
               {privateRouteComponents}
