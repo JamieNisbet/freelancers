@@ -453,4 +453,14 @@ export const MenuConstants = {
   customer: [],
   operationsManager: [],
   resourcesManager: [],
+  unauthenticated: [
+    {
+      title: 'Login',
+      route: '/login',
+    },
+    {
+      title: 'Sign Up',
+      route: '/register',
+    },
+  ],
 };

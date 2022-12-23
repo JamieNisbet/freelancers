@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 const NavBar = () => {
   const storeState = useSelector((state) => state);
   const { auth } = storeState;
-  const { freelancer, admin, serviceManager } = MenuConstants;
+  const { freelancer, admin, serviceManager, unauthenticated } = MenuConstants;
   return (
     <div
       className='
@@ -65,7 +65,7 @@ const NavBar = () => {
               {auth.user.userRole === 1 &&
                 admin.map((item, index) => (
                   <li key={index}>
-                    <NavLink to={item.route} className='hover:text-purple-400 block py-2 md:p-4'>
+                    <NavLink to={item.route} className='block py-2 hover:underline md:p-4'>
                       {item.title}
                     </NavLink>
                   </li>
@@ -73,7 +73,7 @@ const NavBar = () => {
               {auth.user.userRole === 2 &&
                 freelancer.map((item, index) => (
                   <li key={index}>
-                    <NavLink to={item.route} className='hover:text-purple-400 block py-2 md:p-4'>
+                    <NavLink to={item.route} className='block py-2 hover:underline md:p-4'>
                       {item.title}
                     </NavLink>
                   </li>
@@ -81,7 +81,15 @@ const NavBar = () => {
               {auth.user.userRole === 3 &&
                 serviceManager.map((item, index) => (
                   <li key={index}>
-                    <NavLink to={item.route} className='hover:text-purple-400 block py-2 md:p-4'>
+                    <NavLink to={item.route} className='block py-2 hover:underline md:p-4'>
+                      {item.title}
+                    </NavLink>
+                  </li>
+                ))}
+              {!auth.isAuthenticated &&
+                unauthenticated.map((item, index) => (
+                  <li key={index}>
+                    <NavLink to={item.route} className='block py-2 hover:underline md:p-4'>
                       {item.title}
                     </NavLink>
                   </li>

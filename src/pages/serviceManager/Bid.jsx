@@ -16,15 +16,17 @@ const Bid = () => {
 
   const fetchDetails = () => {
     freelancerApi
-      .post(URL.BID_DETAILS, { bidrequestid: id }, authToken)
+      .post(URL.BID_DETAILS, { id: id }, authToken)
       .then((res) => {
         const bidDetails = res.data;
         setDetails(bidDetails);
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <>
+      <div>HELLO</div>
       <div>{details.serviceRequestId}</div>
       <div>{details.title}</div>
       <div>{details.description}</div>

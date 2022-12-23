@@ -1,7 +1,13 @@
-// USERS
+// MY API ROUTES
+export const FILTER_SEARCH_BIDS = '/api/bids/filtersearch';
+export const BID_DETAILS = '/api/bids/bidRequestDetails';
+
+// CURRENTLY IN USE
 export const LOGIN = '/users/login';
-export const REGISTER_URL = '/api/users/customerRegister';
 export const OLD_REGISTER_URL = '/api/users/register';
+
+// USERS
+export const REGISTER_URL = '/api/users/customerRegister';
 export const EMAIL_CONFIRM = '/api/users/confirmemail';
 export const VERIFY_EMAIL = '/api/users/verifyEmail';
 export const UPDATE_ROLE = '/api/users/updateUserRole';
@@ -117,11 +123,9 @@ export const USER_CERTIFICATION_STATUS = '/api/users/certificationstatus';
 // BIDS
 export const BIDS_UPLOAD = '/api/bids/upload';
 export const CREATE_BID = '/api/bids/createbid';
-export const BID_DETAILS = '/api/bids/biddetails';
 export const BID_PROPOSAL_DETAILS = '/api/bidproposals/bidproposaldetails';
 export const SM_BIDS = '/api/bids/smbids';
 export const BIDS = '/api/bids/bids';
-export const FILTER_SEARCH_BIDS = '/api/bids/filtersearch';
 export const CREATE_BID_PROPOSAL = '/api/bidproposals/createbidproposal';
 export const UPDATE_OTHER_BIDS = '/api/bids/updateotherbids';
 export const UPDATE_BID_PARTICIPANTS = '/api/bids/updatebidparticipants';
