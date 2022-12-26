@@ -4,6 +4,7 @@ export const BID_DETAILS = '/api/bids/bidRequestDetails';
 
 // CURRENTLY IN USE
 export const LOGIN = '/users/login';
+export const SERVICE_REQUEST = '/customers/getAllServiceRequests';
 export const OLD_REGISTER_URL = '/api/users/register';
 
 // USERS

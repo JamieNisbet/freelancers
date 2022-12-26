@@ -82,16 +82,18 @@ const Login = () => {
             placeholder='*****'
             label='Password'
           />
+          <div className='mt-5 flex justify-center text-white'>
+            <button type='submit' onClick={onSubmit}>
+              Log In
+            </button>
+          </div>
+          <p className='text-blue mt-3 text-center'>
+            Not registered yet?{' '}
+            <Link to='/register' className='text-blue-600 dark:text-blue-500 hover:underline'>
+              Click Here!
+            </Link>
+          </p>
         </form>
-        <div className='mt-5 flex justify-center text-white'>
-          <button onClick={onSubmit}>Log In</button>
-        </div>
-        <p className='text-blue mt-3 text-center'>
-          Not registered yet?{' '}
-          <Link to='/register' className='text-blue-600 dark:text-blue-500 hover:underline'>
-            Click Here!
-          </Link>
-        </p>
       </div>
     </div>
   );

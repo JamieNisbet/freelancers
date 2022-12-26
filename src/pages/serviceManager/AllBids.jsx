@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import { Navigate } from 'react-router-dom';
-// import BidListItem from '../../components/BidListItem';
 import { freelancerApi, adminApi, authToken } from '../../axios';
-// import FilterBar from '../../components/FilterBar';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../../reducers/actions/uiActions';
-// import Table from '../../components/Table';
 import * as URL from '../../utils/apiEndpoints';
 import ResponsiveTable from '../../components/ResponsiveTable';
 

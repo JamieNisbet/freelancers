@@ -325,12 +325,6 @@ export const privateRoutes = [
   // },
 ];
 
-/* USER ROLES 
-   Admin = 1
-   Freelancer = 2
-   Service Manager = 3
-*/
-
 export const MenuConstants = {
   freelancer: [
     {
