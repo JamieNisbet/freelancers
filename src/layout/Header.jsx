@@ -1,14 +1,14 @@
-import React from 'react';
-import { MenuConstants } from '../config/routes';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import { MenuConstants } from '../config/routes'
+import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 // import { HiOutlineBell } from 'react-icons/hi';
 // import { BiUserCircle } from 'react-icons/bi';
 
-const NavBar = () => {
-  const storeState = useSelector((state) => state);
-  const { auth } = storeState;
-  const { freelancer, admin, serviceManager, unauthenticated } = MenuConstants;
+const Header = () => {
+  const storeState = useSelector((state) => state)
+  const { auth } = storeState
+  const { freelancer, admin, serviceManager, unauthenticated } = MenuConstants
   return (
     <div
       className='
@@ -99,7 +99,7 @@ const NavBar = () => {
         </nav>
       </header>
     </div>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default Header
