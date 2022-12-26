@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { freelancerApi, adminApi, authToken } from '../../axios';
-import { useDispatch } from 'react-redux';
-import { setLoading } from '../../reducers/actions/uiActions';
-import * as URL from '../../utils/apiEndpoints';
-import ResponsiveTable from '../../components/ResponsiveTable';
+import React, { useEffect, useState } from 'react'
+import { freelancerApi, adminApi, authToken } from '../../axios'
+import { useDispatch } from 'react-redux'
+import { setLoading } from '../../reducers/actions/uiActions'
+import * as URL from '../../utils/apiEndpoints'
+import TableComponent from '../../components/TableComponent'
 
 export const AllBids = () => {
-  const dispatch = useDispatch();
-  const [query, setQuery] = useState('');
+  const dispatch = useDispatch()
+  const [query, setQuery] = useState('')
   // eslint-disable-next-line no-unused-vars
   const [filters, setFilters] = useState({
     status: '',
     category: '',
     dateRange: [],
-  });
+  })
 
   const [state, setState] = useState({
     initialBids: [],
     bids: [],
     errors: {},
-  });
+  })
 
   useEffect(() => {
-    dispatch(setLoading(true));
-    fetchBids();
-    fetchCategories();
-    dispatch(setLoading(false));
-  }, []);
+    dispatch(setLoading(true))
+    fetchBids()
+    fetchCategories()
+    dispatch(setLoading(false))
+  }, [])
 
   useEffect(() => {
-    filterBids({ type: 'search', value: query });
-  }, [query]);
+    filterBids({ type: 'search', value: query })
+  }, [query])
 
   const fetchBids = () => {
     freelancerApi
@@ -40,23 +40,23 @@ export const AllBids = () => {
           ...prev,
           initialBids: res.data,
           bids: res.data,
-        }));
+        }))
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
 
   const fetchCategories = () => {
     adminApi
       .get(URL.GET_SERVICE_CATEGORIES, authToken)
       .then((res) => {
-        const categories = res.data.filter((e) => e.isActive);
-        const categoryList = categories.map((el) => el.categoryName);
-        setState((prevState) => ({ ...prevState, categories: categoryList }));
+        const categories = res.data.filter((e) => e.isActive)
+        const categoryList = categories.map((el) => el.categoryName)
+        setState((prevState) => ({ ...prevState, categories: categoryList }))
       })
       .catch((err) => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   const filterBids = (filter) => {
     freelancerApi
@@ -72,15 +72,15 @@ export const AllBids = () => {
         setState((prev) => ({
           ...prev,
           bids: res.data,
-        }));
+        }))
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
 
   const allBids = state.bids.sort(function (a, b) {
-    return new Date(b.date) - new Date(a.date);
-  });
-  console.log(allBids);
+    return new Date(b.date) - new Date(a.date)
+  })
+  console.log(allBids)
   return (
     <>
       <div className='flex flex-row bg-primary'>
@@ -100,9 +100,9 @@ export const AllBids = () => {
                 type='text'
                 id='table-search-users'
                 onChange={(e) => {
-                  const value = e.target.value;
-                  const query = value.toLowerCase();
-                  setQuery(query);
+                  const value = e.target.value
+                  const query = value.toLowerCase()
+                  setQuery(query)
                 }}
                 className='text-gray-900 bg-gray-50 border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 block w-80 rounded-lg border p-2 pl-10 text-sm'
                 placeholder='Search by id or title'
@@ -111,13 +111,13 @@ export const AllBids = () => {
           </div>
           <div className='bg-teal text-gradient text-left'>
             <div>
-              <ResponsiveTable type='bids' array={allBids} />
+              <TableComponent type='bids' array={allBids} />
             </div>
           </div>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default AllBids;
+export default AllBids

@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy } from 'react'
 
 export const publicRoutes = [
   {
@@ -49,7 +49,7 @@ export const publicRoutes = [
     exact: true,
     element: lazy(() => import('../pages/auth/ResetPassword')),
   },
-];
+]
 
 export const privateRoutes = [
   {
@@ -62,11 +62,6 @@ export const privateRoutes = [
 
     exact: true,
     element: lazy(() => import('../pages/freelancers/Freelancers')),
-  },
-  {
-    path: '/admin',
-    exact: true,
-    element: lazy(() => import('../pages/admin/Admin')),
   },
   {
     path: '/bid-request',
@@ -323,7 +318,7 @@ export const privateRoutes = [
   //   exact: true,
   //   element: lazy(() => import('')),
   // },
-];
+]
 
 export const MenuConstants = {
   freelancer: [
@@ -457,4 +452,4 @@ export const MenuConstants = {
       route: '/register',
     },
   ],
-};
+}
